@@ -3,8 +3,10 @@ package com.sample.docs.spring.springrestdocssample;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.springframework.boot.test.autoconfigure.restdocs.AutoConfigureRestDocs;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.restdocs.RestDocumentationContext;
 import org.springframework.restdocs.RestDocumentationContextProvider;
 import org.springframework.restdocs.RestDocumentationExtension;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
@@ -34,7 +36,7 @@ public class SpringRestDocsSampleApplicationTests {
 	public void getItemTest() throws Exception {
 		this.mockMvc.perform(get("/item/{id}", "001").accept(MediaType.APPLICATION_JSON))
 				.andExpect(status().isOk())
-				.andDo(document("controller-doc", pathParameters(parameterWithName("id").description("商品ID"))));
+				.andDo(document("{class-name}", pathParameters(parameterWithName("id").description("商品ID"))));
 	}
 
 }
