@@ -1,5 +1,6 @@
 package com.sample.docs.spring.springrestdocssample;
 
+import com.epages.restdocs.raml.FieldDescriptors;
 import com.epages.restdocs.raml.RamlResourceSnippetParameters;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -10,6 +11,8 @@ import org.springframework.http.MediaType;
 import org.springframework.restdocs.RestDocumentationContext;
 import org.springframework.restdocs.RestDocumentationContextProvider;
 import org.springframework.restdocs.RestDocumentationExtension;
+import org.springframework.restdocs.payload.FieldDescriptor;
+import org.springframework.restdocs.payload.JsonFieldType;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
@@ -46,8 +49,12 @@ public class SpringRestDocsSampleApplicationTests {
 						ramlResource(RamlResourceSnippetParameters.builder()
 								.description("Get a note by id")
 								.pathParameters(parameterWithName("id").description("商品ID"))
-								.build())
+								.responseFields(
+										// typeを指定しないとNullPointerExceptionが発生する時があるっぽい
+										fieldWithPath("id").description("商品ID").type(JsonFieldType.STRING),
+										fieldWithPath("name").description("商品名").type(JsonFieldType.STRING),
+										fieldWithPath("dateTime").description("更新日時").type(JsonFieldType.VARIES)
+								).build())
 				));
 	}
-
 }
