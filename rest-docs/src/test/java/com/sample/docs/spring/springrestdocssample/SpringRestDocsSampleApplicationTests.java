@@ -1,7 +1,5 @@
 package com.sample.docs.spring.springrestdocssample;
 
-import com.epages.restdocs.raml.FieldDescriptors;
-import com.epages.restdocs.raml.RamlResourceSnippetParameters;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -11,21 +9,14 @@ import org.springframework.http.MediaType;
 import org.springframework.restdocs.RestDocumentationContext;
 import org.springframework.restdocs.RestDocumentationContextProvider;
 import org.springframework.restdocs.RestDocumentationExtension;
-import org.springframework.restdocs.payload.FieldDescriptor;
-import org.springframework.restdocs.payload.JsonFieldType;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
-import static com.epages.restdocs.raml.RamlResourceDocumentation.fields;
-import static com.epages.restdocs.raml.RamlResourceDocumentation.ramlResource;
-import static org.springframework.restdocs.hypermedia.HypermediaDocumentation.linkWithRel;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.documentationConfiguration;
 import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.get;
-import static org.springframework.restdocs.payload.PayloadDocumentation.fieldWithPath;
 import static org.springframework.restdocs.request.RequestDocumentation.parameterWithName;
 import static org.springframework.restdocs.request.RequestDocumentation.pathParameters;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -43,18 +34,9 @@ public class SpringRestDocsSampleApplicationTests {
 
 	@Test
 	public void getItemTest() throws Exception {
-		this.mockMvc.perform(get("/item/{id}", "001"))
+		this.mockMvc.perform(get("/item/{id}", "001").accept(MediaType.APPLICATION_JSON))
 				.andExpect(status().isOk())
-				.andDo(document("item-test",
-						ramlResource(RamlResourceSnippetParameters.builder()
-								.description("Get a note by id")
-								.pathParameters(parameterWithName("id").description("商品ID"))
-								.responseFields(
-										// typeを指定しないとNullPointerExceptionが発生する時があるっぽい
-										fieldWithPath("id").description("商品ID").type(JsonFieldType.STRING),
-										fieldWithPath("name").description("商品名").type(JsonFieldType.STRING),
-										fieldWithPath("dateTime").description("更新日時").type(JsonFieldType.VARIES)
-								).build())
-				));
+				.andDo(document("{class-name}", pathParameters(parameterWithName("id").description("商品ID"))));
 	}
+
 }

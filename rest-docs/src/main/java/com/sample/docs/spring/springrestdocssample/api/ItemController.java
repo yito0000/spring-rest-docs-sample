@@ -10,8 +10,6 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
-
 @RestController
 @RequestMapping("/item")
 public class ItemController {
@@ -19,10 +17,9 @@ public class ItemController {
     @GetMapping(path = "/{id}")
     public Item fetchItem(@PathVariable("id") String id) {
         Item item = new Item();
-        item.setId("responseId");
-        item.setName("responseName");
+        item.setId("id");
+        item.setName("name");
         item.setDateTime(LocalDateTime.now());
-
         return item;
     }
 

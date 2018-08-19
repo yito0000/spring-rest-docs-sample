@@ -8,3 +8,8 @@ build/*
 bin/*
 out/*
 
+rest-docs/.*
+rest-docs/build/*
+
+rest-docs-raml/.*
+rest-docs-raml/build/*
