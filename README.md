@@ -32,6 +32,7 @@ gradle ramldoc
 
 ramlファイルをhtmlファイルに変換して開く
 ```aidl
+cd rest-docs-raml
 raml2html ./build/ramldoc/api.raml > ./build/ramldoc/api.raml.html
 open ./build/ramldoc/api.raml.html
 ```
