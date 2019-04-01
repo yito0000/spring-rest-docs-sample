@@ -12,7 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/item")
-public class ItemController {
+public class ItemApiController {
 
     @GetMapping(path = "/{id}")
     public Item fetchItem(@PathVariable("id") String id) {

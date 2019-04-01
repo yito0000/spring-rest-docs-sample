@@ -10,7 +10,7 @@ import java.util.List;
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
 
 @RestController
-public class ItemController {
+public class ItemApiController {
 
     @GetMapping(path = "/item/{id}")
     public Item fetchItem(@PathVariable("id") String id) {
@@ -22,7 +22,7 @@ public class ItemController {
         return item;
     }
 
-    @GetMapping(path = "/items")
+    @GetMapping(path = "/item/list")
     public List<Item> fetchItemList() {
 
         List<Item> response = new ArrayList<>();
@@ -48,13 +48,11 @@ public class ItemController {
     }
 
     @PostMapping(path = "/item")
-    public Item post(Item item) {
-
+    public Item post(@RequestBody Item item) {
         Item response = Item.builder()
-                .id("0001")
-                .name("name")
+                .id(item.getId())
+                .name(item.getName())
                 .dateTime(LocalDateTime.now()).build();
-
         return response;
     }
 
