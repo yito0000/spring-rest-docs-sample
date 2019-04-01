@@ -1,4 +1,4 @@
-package com.sample.docs.spring.springrestdocssample;
+package com.sample.docs.spring.springrestdocsraml;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

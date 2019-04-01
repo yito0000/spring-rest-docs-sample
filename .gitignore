@@ -13,3 +13,5 @@ rest-docs/build/*
 
 rest-docs-raml/.*
 rest-docs-raml/build/*
+rest-docs-raml/out/*
+rest-docs-raml/classes/*

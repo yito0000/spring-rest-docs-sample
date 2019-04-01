@@ -1,12 +1,12 @@
-package com.sample.docs.spring.springrestdocssample;
+package com.sample.docs.spring.springrestdocsraml;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SpringRestDocsSampleApplication {
+public class SpringRestDocsRamlApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SpringRestDocsSampleApplication.class, args);
+		SpringApplication.run(SpringRestDocsRamlApplication.class, args);
 	}
 }
