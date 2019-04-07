@@ -104,7 +104,7 @@ project('rest-docs-raml') {
 	}
 
 	ramldoc {
-		apiTitle = 'Notes API'
+		apiTitle = 'Notes'
 		apiBaseUri = 'http://localhost:8080/'
 		ramlVersion = "1.0"
 	}
